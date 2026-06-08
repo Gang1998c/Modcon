@@ -86,14 +86,6 @@ git clone https://github.com/Gang1998c/Modcon.git
 cd Modcon
 ```
 
-### 4. 安装 ModCon 包 (Install ModCon Package)
-
-```bash
-pip install -e .
-# 或者
-python setup.py install
-```
-
 ------------------------------------------------------------------------
 
 ## 📖 快速开始 (Quick Start)
