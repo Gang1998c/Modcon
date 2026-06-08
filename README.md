@@ -60,15 +60,23 @@ pip install -r requirements.txt
 
 ### 2. R 环境配置 (R Environment Setup)
 
-在 R 中安装所需的包（如适用）：
+在 R 中执行以下命令安装所需的包：
 
 ```r
-# 安装所需的 R 包
-install.packages(c("data.table", "dplyr", "ggplot2"))
-# 如需特定的生物信息学包
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("GenomicRanges")
+# 1. 安装常规 CRAN 依赖包
+install.packages(c("dplyr", "caret", "e1071", "ROCR", "pROC", "devtools"))
+
+# 2. 安装 Bioconductor 核心生物信息包及巨型基因组数据集
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install(c("GenomicRanges", "rtracklayer", "SummarizedExperiment", 
+                       "TxDb.Hsapiens.UCSC.hg19.knownGene", 
+                       "BSgenome.Hsapiens.UCSC.hg19", 
+                       "BSgenome.Hsapiens.UCSC.hg38",
+                       "fitCons.UCSC.hg19", 
+                       "phastCons100way.UCSC.hg19"))
+
+# 3. 安装实验室专用多模态特征提取包
+devtools::install_github("m6ALogisticModel")
 ```
 
 ### 3. 克隆仓库 (Clone Repository)
