@@ -30,7 +30,7 @@
 
 ### 流程图 (Pipeline Workflow)
 
-![ModCon Pipeline Architecture](https://imgur.com/a/modcon-pipeline.png)
+![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon%20framework.jpg)
 
 该图展示了完整的分析流程：
 - **数据收集** (Data Collection): 来自多物种（人类、小鼠、猪）的 RNA 修饰数据
