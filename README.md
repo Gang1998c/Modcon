@@ -28,6 +28,17 @@
 5.  **集成聚合 (Ensemble Aggregation):**
     将跨物种追踪结果、经验库得分和深度学习分类概率聚合为一个单一的整体指标：**ModCon Score**。
 
+### 流程图 (Pipeline Workflow)
+
+![ModCon Pipeline Architecture](https://imgur.com/a/modcon-pipeline.png)
+
+该图展示了完整的分析流程：
+- **数据收集** (Data Collection): 来自多物种（人类、小鼠、猪）的 RNA 修饰数据
+- **数据处理** (Data Processing): 碱基调用、ELIGOS 修饰检测和位点映射
+- **模型构建** (Model Construction): 同源修饰一致性、物种内重复性、序列上下文保守性分析
+- **微调大语言模型** (Fine-tuned Large Language Model): MLP 分类器和 DNABERT-2 Transformer 集成
+- **模型验证与应用** (Model Validation and Application): NGS 验证、变异密度验证、功能分析和 Web 服务预测
+
 ------------------------------------------------------------------------
 
 ## 🛠️ 环境准备与安装 (Prerequisites & Installation)
