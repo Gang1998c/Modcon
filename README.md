@@ -1,8 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
 
 # ModCon: An Integrated Multimodal Pipeline for RNA Modification Conservation Scoring
 
