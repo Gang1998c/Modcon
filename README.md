@@ -1,9 +1,8 @@
-
 # ModCon: An Integrated Multimodal Pipeline for RNA Modification Conservation Scoring
 
 [![Python](https://img.shields.io/badge/Python-3.8%252B-blue.svg)](https://www.python.org/)
-[![R](https://img.shields.io/badge/R-4.0%252B-seafoam.svg)](https://www.r-project.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%252B-ee4c2c.svg)](https://pytorch.org/)
+[![R](https://img.shields.io/badge/R-4.2.2%252B-seafoam.svg)](https://www.r-project.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 
 **ModCon** 是一款高性能、跨语言的软件工具，旨在评估和打分跨物种（人类、小鼠和猪）的 RNA 修饰位点保守性。通过将先进的序列标记化（Sequence Tokenization）与高维基因组拓扑学相结合，该流水线提供了一个代表修饰保守性的强健指标。
@@ -318,4 +317,3 @@ plot_conservation_distribution(
 ## 🙏 致谢 (Acknowledgments)
 
 感谢所有贡献者和使用者的支持。本项目基于最新的生物信息学和深度学习技术。
-
