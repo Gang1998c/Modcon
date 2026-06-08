@@ -157,145 +157,40 @@ optional arguments:
 
 ```csv
 seqnames,position,strand
-chr1,1000,+
-chr1,2000,-
-chr2,5000,+
+chr17,42775424,+
+chr1,165743188,-
+chr1,44776696,+
+chr7,76327559,-
+chrM,3812,+
+chr2,232894801,-
+chr19,16185627,+
+chr11,64238581,+
+chr1,1407207,-
+chrY,57211982,+
 ```
 
 ------------------------------------------------------------------------
 
 ## 📈 输出结果格式 (Output Format)
 
-管道生成包含以下信息的结果文件：
-
 | 列名 | 描述 |
 |------|------|
 | `modcon_score` | 最终的 ModCon 保守性评分 (0-1) |
-| `conservation_level` | 保守性等级 (`High`, `Medium`, `Low`) |
-| `cross_species_tracking` | 跨物种追踪结果 |
-| `topology_features` | 高维拓扑特征 |
-| `deep_learning_probability` | 深度学习模型预测概率 |
-| `ensemble_confidence` | 集成模型置信度 |
 
-------------------------------------------------------------------------
+### 示例输出 (Example Output)
 
-## 🔧 高级配置 (Advanced Configuration)
-
-### 配置文件示例 (Configuration File Example)
-
-```yaml
-# config.yaml
-modcon:
-  reference_genome: "hg38"
-  target_species:
-    - "mm39"
-    - "susScr11"
-  
-  # 特征提取参数
-  feature_extraction:
-    window_size: 800  # bp
-    num_features: 40
-    
-  # 深度学习模型参数
-  deep_learning:
-    model_name: "dnabert2"
-    batch_size: 32
-    device: "cuda"  # 或 "cpu"
-    
-  # 集成聚合权重
-  ensemble:
-    cross_species_weight: 0.3
-    empirical_score_weight: 0.3
-    deep_learning_weight: 0.4
 ```
-
-### 自定义参数调整 (Custom Parameter Tuning)
-
-```python
-pipeline = ModConPipeline(
-    reference_genome="hg38",
-    window_size=800,
-    num_features=40,
-    batch_size=32,
-    device="cuda"
-)
-```
-
-------------------------------------------------------------------------
-
-## 📚 详细文档 (Documentation)
-
-- [架构设计文档](./docs/architecture.md)
-- [API 参考](./docs/api_reference.md)
-- [常见问题](./docs/faq.md)
-- [教程与示例](./docs/tutorials/)
-
-------------------------------------------------------------------------
-
-## 🧪 测试 (Testing)
-
-运行测试套件确保安装正确：
-
-```bash
-# 运行所有测试
-pytest tests/
-
-# 运行特定测试
-pytest tests/test_coordinate_liftover.py -v
-
-# 生成覆盖率报告
-pytest --cov=modcon tests/
-```
-
-------------------------------------------------------------------------
-
-## 📝 使用示例 (Usage Examples)
-
-### 示例 1：分析单个修饰位点 (Analyze Single Site)
-
-```python
-from modcon import ModConPipeline
-
-pipeline = ModConPipeline()
-
-# 单个位点
-site = {
-    "seqnames": "chr1",
-    "position": 10000,
-    "strand": "+"
-}
-
-result = pipeline.analyze_single_site(site)
-print(f"ModCon Score: {result['modcon_score']}")
-print(f"Conservation Level: {result['conservation_level']}")
-```
-
-### 示例 2：批量分析 (Batch Analysis)
-
-```python
-import pandas as pd
-from modcon import ModConPipeline
-
-# 读取输入数据
-input_data = pd.read_csv("modifications.csv")
-
-pipeline = ModConPipeline()
-results = pipeline.analyze_batch(input_data, n_jobs=4)
-
-# 保存结果
-results.to_csv("conservation_scores.csv", index=False)
-```
-
-### 示例 3：可视化结果 (Visualize Results)
-
-```python
-from modcon.visualization import plot_conservation_distribution
-
-# 绘制保守性分布
-plot_conservation_distribution(
-    results,
-    output_file="conservation_distribution.png"
-)
+seqnames	position	strand	modcon_score
+chr17	42775424	+	0.7047
+chr1	165743188	-	0.2386
+chr1	44776696	+	0.6802
+chr7	76327559	-	0.0043
+chrM	3812	+	0.5442
+chr2	232894801	-	0.1426
+chr19	16185627	+	0.2492
+chr11	64238581	+	0.0354
+chr1	1407207	-	0.3815
+chrY	57211982	+	0.2118
 ```
 
 ------------------------------------------------------------------------
