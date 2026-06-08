@@ -5,68 +5,68 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 
-**ModCon** 是一款高性能、跨语言的软件工具，旨在评估和打分跨物种（人类、小鼠和猪）的 RNA 修饰位点保守性。通过将先进的序列标记化（Sequence Tokenization）与多模态的深度学习架构相结合，该工具提供了一套全面且可解释的解决方案来量化不同物种间 RNA 修饰的保守性特征。
+**ModCon** is a high-performance, cross-language software tool designed to assess and score RNA modification site conservation across species (human, mouse, and pig). By combining advanced sequence tokenization with multimodal deep learning architecture, this tool provides a comprehensive and interpretable solution for quantifying conservation features of RNA modifications across different species.
 
 ------------------------------------------------------------------------
 
-## 🧬 架构概述 (Architectural Overview)
+## 🧬 Architectural Overview
 
-该流水线执行一个自动化的 5 阶段流处理，在 Python 和 R 运行环境之间无缝衔接：
+This pipeline executes an automated 5-stage data processing workflow that seamlessly bridges Python and R environments:
 
-1.  **基础特征映射 (Base Feature Mapping):**
-    将位点坐标与基础参考目录进行映射，以继承经验统计锚点（`noes` 和 `pm` 指标）。
+1.  **Base Feature Mapping:**
+    Maps site coordinates with a base reference directory to inherit empirical statistical anchors (`noes` and `pm` metrics).
 
-2.  **跨物种坐标转换 (Cross-Species Coordinate Liftover):**
-    利用精准且感知链方向（strand-aware）的逻辑，将人类 `hg38` 修饰位点投射到目标参考网络（`mm39` 和 `susScr11`）。
+2.  **Cross-Species Coordinate Liftover:**
+    Uses precise and strand-aware logic to project human `hg38` modification sites to target reference networks (`mm39` and `susScr11`).
 
-3.  **高维拓扑特征谱分析 (High-Dimensional Topology Profiling):**
-    通过 `m6ALogisticModel` 包执行 R 语言子进程，将坐标提升至 `hg19`，分离出 40 个不同的基因组特征，并提取中心化的 800bp 参考序列映射图。
+3.  **High-Dimensional Topology Profiling:**
+    Executes R language subprocess via `m6ALogisticModel` package, lifts coordinates to `hg19`, isolates 40 distinct genomic features, and extracts centered 800bp reference sequence mappings.
 
-4.  **碱基特异性多模态推理 (Base-Specific Multimodal Inference):**
-    通过自动化的序列路由门控转发数据阵列，以查询专门的深度学习架构（融合了 MLP 网络与 DNABERT-2 Transformer 嵌入）。
+4.  **Base-Specific Multimodal Inference:**
+    Employs automated sequence routing gate-forwarding data arrays to query specialized deep learning architectures (fusing MLP networks with DNABERT-2 Transformer embeddings).
 
-5.  **集成聚合 (Ensemble Aggregation):**
-    将跨物种追踪结果、经验库得分和深度学习分类概率聚合为一个单一的整体指标：**ModCon Score**。
+5.  **Ensemble Aggregation:**
+    Aggregates cross-species tracking results, empirical database scores, and deep learning classification probabilities into a single holistic metric: **ModCon Score**.
 
-### 流程图 (Pipeline Workflow)
+### Pipeline Workflow
 
 ![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
 
-该图展示了完整的分析流程：
-- **数据收集** (Data Collection): 来自多物种（人类、小鼠、猪）的 RNA 修饰数据
-- **数据处理** (Data Processing): 碱基调用、ELIGOS 修饰检测和位点映射
-- **模型构建** (Model Construction): 同源修饰一致性、物种内重复性、序列上下文保守性分析
-- **微调大语言模型** (Fine-tuned Large Language Model): MLP 分类器和 DNABERT-2 Transformer 集成
-- **模型验证与应用** (Model Validation and Application): NGS 验证、变异密度验证、功能分析和 Web 服务预测
+This diagram shows the complete analysis workflow:
+- **Data Collection**: RNA modification data from multiple species (human, mouse, pig)
+- **Data Processing**: Base calling, ELIGOS modification detection, and site mapping
+- **Model Construction**: Homologous modification consistency, intra-species reproducibility, sequence context conservation analysis
+- **Fine-tuned Large Language Model**: MLP classifier and DNABERT-2 Transformer integration
+- **Model Validation and Application**: NGS validation, variant density validation, functional analysis, and web service prediction
 
 ------------------------------------------------------------------------
 
-## 🛠️ 环境准备与安装 (Prerequisites & Installation)
+## 🛠️ Prerequisites & Installation
 
-### 1. Python 环境配置 (Python Environment Setup)
+### 1. Python Environment Setup
 
-请确保你激活了一个运行 Python 3.8+ 的 Anaconda 环境：
+Ensure you activate an Anaconda environment running Python 3.8+:
 
 ```bash
-# 创建新的 conda 环境
+# Create new conda environment
 conda create -n modcon python=3.8 -y
 
-# 激活环境
+# Activate environment
 conda activate modcon
 
-# 安装所需依赖
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. R 环境配置 (R Environment Setup)
+### 2. R Environment Setup
 
-在 R 中执行以下命令安装所需的包：
+Execute the following commands in R to install required packages:
 
 ```r
-# 1. 安装常规 CRAN 依赖包
+# 1. Install standard CRAN dependency packages
 install.packages(c("dplyr", "caret", "e1071", "ROCR", "pROC", "devtools"))
 
-# 2. 安装 Bioconductor 核心生物信息包及巨型基因组数据集
+# 2. Install Bioconductor core bioinformatics packages and large genomic datasets
 if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
 BiocManager::install(c("GenomicRanges", "rtracklayer", "SummarizedExperiment", 
                        "TxDb.Hsapiens.UCSC.hg19.knownGene", 
@@ -75,11 +75,11 @@ BiocManager::install(c("GenomicRanges", "rtracklayer", "SummarizedExperiment",
                        "fitCons.UCSC.hg19", 
                        "phastCons100way.UCSC.hg19"))
 
-# 3. 安装实验室专用多模态特征提取包
+# 3. Install lab-specific multimodal feature extraction package
 devtools::install_github("m6ALogisticModel")
 ```
 
-### 3. 克隆仓库 (Clone Repository)
+### 3. Clone Repository
 
 ```bash
 git clone https://github.com/Gang1998c/Modcon.git
@@ -88,9 +88,9 @@ cd Modcon
 
 ------------------------------------------------------------------------
 
-## 📖 快速开始 (Quick Start)
+## 📖 Quick Start
 
-### 基本用法 (Basic Usage)
+### Basic Usage
 
 ```bash
 python master_pipeline.py \
@@ -109,9 +109,9 @@ python master_pipeline.py \
     --output_path "results.csv"
 ```
 
-<sub>用户只需提供 DNA 格式的单碱基位点数据（1-based），格式参考 `server_example_data.csv`（参考基因组：hg38）。其他需要的文件以及训练完成的模型已上传到 Hugging Face，用户可在该处下载。</sub>
+<sub>Users only need to provide single-base site data in DNA format (1-based). Refer to `server_example_data.csv` for format reference (reference genome: hg38). Other required files and trained models have been uploaded to Hugging Face and can be downloaded from there.</sub>
 
-### 参数说明 (Parameter Illustration)
+### Parameter Illustration
 
 ```
 optional arguments:
@@ -143,17 +143,17 @@ optional arguments:
 
 ------------------------------------------------------------------------
 
-## 📊 输入数据格式 (Input Data Format)
+## 📊 Input Data Format
 
-### 必需列 (Required Columns)
+### Required Columns
 
-| 列名 | 类型 | 描述 |
-|------|------|------|
-| `seqnames` | str | 染色体编号 (如 `chr1`) |
-| `position` | int | 修饰位点坐标 (hg38, 1-based) |
-| `strand` | str | 链方向 (`+` 或 `-`) |
+| Column Name | Type | Description |
+|-------------|------|-------------|
+| `seqnames` | str | Chromosome identifier (e.g., `chr1`) |
+| `position` | int | Modification site coordinate (hg38, 1-based) |
+| `strand` | str | Strand direction (`+` or `-`) |
 
-### 示例输入 (Example Input)
+### Example Input
 
 ```csv
 seqnames,position,strand
@@ -171,13 +171,13 @@ chrY,57211982,+
 
 ------------------------------------------------------------------------
 
-## 📈 输出结果格式 (Output Format)
+## 📈 Output Format
 
-| 列名 | 描述 |
-|------|------|
-| `modcon_score` | 最终的 ModCon 保守性评分 (0-1) |
+| Column Name | Description |
+|-------------|-------------|
+| `modcon_score` | Final ModCon conservation score (0-1) |
 
-### 示例输出 (Example Output)
+### Example Output
 
 ```
 seqnames	position	strand	modcon_score
@@ -195,18 +195,18 @@ chrY	57211982	+	0.2118
 
 ------------------------------------------------------------------------
 
-## 🤝 贡献 (Contributing)
+## 🤝 Contributing
 
-欢迎提交问题报告和拉取请求！
-
-------------------------------------------------------------------------
-
-## 📄 许可证 (License)
-
-本项目采用 MIT 许可证。详见 [LICENSE](./LICENSE) 文件。
+We welcome bug reports and pull requests!
 
 ------------------------------------------------------------------------
 
-## ✉️ 联系方式 (Contact)
+## 📄 License
 
-如有问题或建议，请联系 [项目维护者](https://github.com/Gang1998c)。
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+------------------------------------------------------------------------
+
+## ✉️ Contact
+
+For questions or suggestions, please contact the [project maintainer](https://github.com/Gang1998c).
