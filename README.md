@@ -111,22 +111,34 @@ python master_pipeline.py \
 
 <sub>用户只需提供 DNA 格式的单碱基位点数据（1-based），格式参考 `server_example_data.csv`（参考基因组：hg38）。其他需要的文件以及训练完成的模型已上传到 Hugging Face，用户可在该处下载。</sub>
 
-### 命令行调用 (Command-line Interface)
+### 参数说明 (Parameter Illustration)
 
-```bash
-# 运行完整的分析流程
-python master_pipeline.py \
-  --user_df_path modifications.csv \
-  --ontdata_path ontdata.csv \
-  --hg38_fa hg38.fa \
-  --mm39_fa mm39.fa \
-  --sus11_fa susScr11.fa \
-  --mm39_chain hg38ToMm39.over.chain \
-  --sus11_chain hg38ToSusScr11.over.chain \
-  --output_path results.csv
-
-# 获取帮助信息
-python master_pipeline.py --help
+```
+optional arguments:
+  -h, --help            show this help message and exit
+  --user_df_path USER_DF_PATH
+                        Path to user-uploaded modification sites file (CSV format) (default: None)
+  --r_script_path R_SCRIPT_PATH
+                        Path to companion R feature extraction engine script (default: server_R.R)
+  --ontdata_path ONTDATA_PATH
+                        Path to base reference library (ontdata.csv) (default: None)
+  --output_path OUTPUT_PATH
+                        Output file destination path (default: master_pipeline_output.csv)
+  --mouse_raw_path MOUSE_RAW_PATH
+                        Path to mouse known conserved coordinates catalog (default: mouse_raw.csv)
+  --pig_raw_path PIG_RAW_PATH
+                        Path to pig known conserved coordinates catalog (default: pig_raw.csv)
+  --hg38_fa HG38_FA     Path to Human hg38 reference genome FASTA (default: None)
+  --mm39_fa MM39_FA     Path to Mouse mm39 reference genome FASTA (default: None)
+  --sus11_fa SUS11_FA   Path to Pig susScr11 reference genome FASTA (default: None)
+  --mm39_chain MM39_CHAIN
+                        Path to hg38ToMm39 conversion over.chain file (default: None)
+  --sus11_chain SUS11_CHAIN
+                        Path to hg38ToSusScr11 conversion over.chain file (default: None)
+  --dnabert_model_path DNABERT_MODEL_PATH
+                        Path to local pre-trained DNABERT-2 workspace directory (default: ./embedded_model)
+  --base_model_dir BASE_MODEL_DIR
+                        Parent workspace directory containing model_A/C/G/U folders (default: ./)
 ```
 
 ------------------------------------------------------------------------
