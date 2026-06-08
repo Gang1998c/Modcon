@@ -92,22 +92,25 @@ cd Modcon
 
 ### 基本用法 (Basic Usage)
 
-```python
-from modcon import ModConPipeline
-
-# 初始化管道
-pipeline = ModConPipeline(config_file="config.yaml")
-
-# 加载 RNA 修饰位点数据
-modifications = pipeline.load_modifications("path/to/modifications.csv")
-
-# 执行完整的分析流程
-results = pipeline.run(modifications, target_species=["mm39", "susScr11"])
-
-# 获取保守性评分
-conservation_scores = results.get_modcon_scores()
-print(conservation_scores)
+```bash
+python master_pipeline.py \
+    --user_df_path "server_example_data.csv" \
+    --ontdata_path "data/ontdata.csv" \
+    --r_script_path "server_R.R" \
+    --hg38_fa "fasta_and_chain/hg38.fa" \
+    --mm39_fa "mm39.fa" \
+    --sus11_fa "susScr11.fa" \
+    --mm39_chain "hg38ToMm39.over.chain" \
+    --sus11_chain "hg38ToSusScr11.over.chain" \
+    --mouse_raw_path "mouse_raw.csv" \
+    --pig_raw_path "pig_raw.csv" \
+    --dnabert_model_path "DNABERT-2-117M/" \
+    --base_model_dir "model/" \
+    --output_path "results.csv"
 ```
+
+# 用户只需提供 DNA 格式的单碱基位点数据（1-based），格式参考 `server_example_data.csv`（参考基因组：hg38）。
+# 其他需要的文件以及训练完成的模型已上传到 Hugging Face，用户可在该处下载。
 
 ### 命令行调用 (Command-line Interface)
 
@@ -291,53 +294,4 @@ plot_conservation_distribution(
 
 ## 🤝 贡献 (Contributing)
 
-我们欢迎社区的贡献！请遵循以下步骤：
-
-1. Fork 该仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
-
-请确保你的代码遵循 [PEP 8](https://www.python.org/dev/peps/pep-0008/) 风格指南。
-
-------------------------------------------------------------------------
-
-## 📋 许可证 (License)
-
-该项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件。
-
-------------------------------------------------------------------------
-
-## 📧 联系方式 (Contact)
-
-- 作者：Gang1998c
-- 问题报告：[GitHub Issues](https://github.com/Gang1998c/Modcon/issues)
-- 邮件：[您的邮箱]
-
-------------------------------------------------------------------------
-
-## 📖 引用 (Citation)
-
-如果你在研究中使用了 ModCon，请引用：
-
-```bibtex
-@software{modcon2024,
-  author = {Gang, Author},
-  title = {ModCon: An Integrated Multimodal Pipeline for RNA Modification Conservation Scoring},
-  year = {2024},
-  url = {https://github.com/Gang1998c/Modcon}
-}
-```
-
-------------------------------------------------------------------------
-
-## ⚠️ 免责声明 (Disclaimer)
-
-本工具用于研究目的。在使用结果做出重要决策前，请进行充分的验证和评估。
-
-------------------------------------------------------------------------
-
-## 🙏 致谢 (Acknowledgments)
-
-感谢所有贡献者和使用者的支持。本项目基于最新的生物信息学和深度学习技术。
+We need to update README with the new basic usage command and the added note. The tool call below will update README.md accordingly.
