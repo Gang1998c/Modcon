@@ -5,7 +5,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 
-**ModCon** 是一款高性能、跨语言的软件工具，旨在评估和打分跨物种（人类、小鼠和猪）的 RNA 修饰位点保守性。通过将先进的序列标记化（Sequence Tokenization）与高维基因组拓扑学相结合，该流水线提供了一个代表修饰保守性的强健指标。
+**ModCon** 是一款高性能、跨语言的软件工具，旨在评估和打分跨物种（人类、小鼠和猪）的 RNA 修饰位点保守性。通过将先进的序列标记化（Sequence Tokenization）与多模态的深度学习架构相结合，该工具提供了一套全面且可解释的解决方案来量化不同物种间 RNA 修饰的保守性特征。
 
 ------------------------------------------------------------------------
 
@@ -109,8 +109,7 @@ python master_pipeline.py \
     --output_path "results.csv"
 ```
 
-# 用户只需提供 DNA 格式的单碱基位点数据（1-based），格式参考 `server_example_data.csv`（参考基因组：hg38）。
-# 其他需要的文件以及训练完成的模型已上传到 Hugging Face，用户可在该处下载。
+<sub>用户只需提供 DNA 格式的单碱基位点数据（1-based），格式参考 `server_example_data.csv`（参考基因组：hg38）。其他需要的文件以及训练完成的模型已上传到 Hugging Face，用户可在该处下载。</sub>
 
 ### 命令行调用 (Command-line Interface)
 
@@ -138,19 +137,17 @@ python master_pipeline.py --help
 
 | 列名 | 类型 | 描述 |
 |------|------|------|
-| `chromosome` | str | 染色体编号 (如 `chr1`) |
-| `position` | int | 修饰位点坐标 (hg38) |
+| `seqnames` | str | 染色体编号 (如 `chr1`) |
+| `position` | int | 修饰位点坐标 (hg38, 1-based) |
 | `strand` | str | 链方向 (`+` 或 `-`) |
-| `modification_type` | str | 修饰类型 (如 `m6A`, `m1A`, `Ψ`) |
-| `score` | float | 初始评分 (可选) |
 
 ### 示例输入 (Example Input)
 
 ```csv
-chromosome,position,strand,modification_type,score
-chr1,1000,+,m6A,0.85
-chr1,2000,-,m1A,0.92
-chr2,5000,+,m6A,0.78
+seqnames,position,strand
+chr1,1000,+
+chr1,2000,-
+chr2,5000,+
 ```
 
 ------------------------------------------------------------------------
@@ -251,10 +248,9 @@ pipeline = ModConPipeline()
 
 # 单个位点
 site = {
-    "chromosome": "chr1",
+    "seqnames": "chr1",
     "position": 10000,
-    "strand": "+",
-    "modification_type": "m6A"
+    "strand": "+"
 }
 
 result = pipeline.analyze_single_site(site)
@@ -294,4 +290,16 @@ plot_conservation_distribution(
 
 ## 🤝 贡献 (Contributing)
 
-We need to update README with the new basic usage command and the added note. The tool call below will update README.md accordingly.
+欢迎提交问题报告和拉取请求！
+
+------------------------------------------------------------------------
+
+## 📄 许可证 (License)
+
+本项目采用 MIT 许可证。详见 [LICENSE](./LICENSE) 文件。
+
+------------------------------------------------------------------------
+
+## ✉️ 联系方式 (Contact)
+
+如有问题或建议，请联系 [项目维护者](https://github.com/Gang1998c)。
