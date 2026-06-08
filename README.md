@@ -30,7 +30,7 @@
 
 ### 流程图 (Pipeline Workflow)
 
-![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon%20framework.jpg)
+![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
 
 该图展示了完整的分析流程：
 - **数据收集** (Data Collection): 来自多物种（人类、小鼠、猪）的 RNA 修饰数据
@@ -48,9 +48,14 @@
 请确保你激活了一个运行 Python 3.8+ 的 Anaconda 环境：
 
 ```bash
+# 创建新的 conda 环境
 conda create -n modcon python=3.8 -y
+
+# 激活环境
 conda activate modcon
-pip install torch transformers pandas numpy biopython python-liftover joblib tqdm scikit-learn
+
+# 安装所需依赖
+pip install -r requirements.txt
 ```
 
 ### 2. R 环境配置 (R Environment Setup)
@@ -108,10 +113,18 @@ print(conservation_scores)
 
 ```bash
 # 运行完整的分析流程
-python -m modcon.cli --input modifications.csv --output results.csv --species mm39,susScr11
+python master_pipeline.py \
+  --user_df_path modifications.csv \
+  --ontdata_path ontdata.csv \
+  --hg38_fa hg38.fa \
+  --mm39_fa mm39.fa \
+  --sus11_fa susScr11.fa \
+  --mm39_chain hg38ToMm39.over.chain \
+  --sus11_chain hg38ToSusScr11.over.chain \
+  --output_path results.csv
 
 # 获取帮助信息
-python -m modcon.cli --help
+python master_pipeline.py --help
 ```
 
 ------------------------------------------------------------------------
