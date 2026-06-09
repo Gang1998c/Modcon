@@ -109,8 +109,18 @@ python master_pipeline.py \
     --output_path "results.csv"
 ```
 
-<sub>Users only need to provide single-base site data in DNA format (1-based). Refer to `server_example_data.csv` for format reference (reference genome: hg38). Other required files and trained models have been uploaded to Hugging Face and can be downloaded from there.</sub>
+Users only need to provide single-base site data in DNA format (1-based). Refer to `server_example_data.csv` for format reference (reference genome: hg38). Other required files and trained models have been uploaded to Hugging Face and can be downloaded from there.
 
+`ontdata.csv`, `mouse_raw.csv`, and `pig_raw.csv` are the original datasets used in this study and are also required for model execution. Due to the large file size, these datasets have been uploaded to Hugging Face and can be downloaded from: https://huggingface.co/datasets/Gang1998c/Modcon_data. The repository also includes the reference genomes and corresponding `over.chain` files.
+
+The four trained base-specific models can be downloaded from: https://huggingface.co/Gang1998c/Modcon</sub>
+
+For downloading and using the `DNABERT-2` model, please refer to:
+• https://github.com/MAGICS-LAB/DNABERT_2
+• https://huggingface.co/zhihan1996/DNABERT-2-117M
+
+#📦 Data & Model Availability Download Guide:
+·Essential Raw Datasets: The files ontdata.csv, mouse_raw.csv, and pig_raw.csv constitute the foundational raw data and are strictly required to run the model pipeline. Due to their large sizes, these files—along with the required reference genomes and over.chain files—have been hosted on Hugging Face. Users must download them manually from the Modcon Data Repository.
 ### Parameter Illustration
 
 ```
