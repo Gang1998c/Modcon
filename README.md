@@ -145,9 +145,6 @@ For downloading and using the DNABERT-2 model, please refer to:
 * https://github.com/MAGICS-LAB/DNABERT_2
 * https://huggingface.co/zhihan1996/DNABERT-2-117M
 
-
-#📦 Data & Model Availability Download Guide:
-·Essential Raw Datasets: The files ontdata.csv, mouse_raw.csv, and pig_raw.csv constitute the foundational raw data and are strictly required to run the model pipeline. Due to their large sizes, these files—along with the required reference genomes and over.chain files—have been hosted on Hugging Face. Users must download them manually from the Modcon Data Repository.
 ### Parameter Illustration
 
 ```
