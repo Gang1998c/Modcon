@@ -109,15 +109,42 @@ python master_pipeline.py \
     --output_path "results.csv"
 ```
 
-Users only need to provide single-base site data in DNA format (1-based). Refer to `server_example_data.csv` for format reference (reference genome: hg38). Other required files and trained models have been uploaded to Hugging Face and can be downloaded from there.
+### Data & Model Download
 
-`ontdata.csv`, `mouse_raw.csv`, and `pig_raw.csv` are the original datasets used in this study and are also required for model execution. Due to the large file size, these datasets have been uploaded to Hugging Face and can be downloaded from: https://huggingface.co/datasets/Gang1998c/Modcon_data. The repository also includes the reference genomes and corresponding `over.chain` files.
+Users only need to provide single-base site data in DNA format (1-based).
+Please refer to `server_example_data.csv` for the required input format (reference genome: hg38).
 
-The four trained base-specific models can be downloaded from: https://huggingface.co/Gang1998c/Modcon</sub>
+#### Required Datasets
 
-For downloading and using the `DNABERT-2` model, please refer to:
-• https://github.com/MAGICS-LAB/DNABERT_2
-• https://huggingface.co/zhihan1996/DNABERT-2-117M
+The following files are required for running the pipeline:
+
+* `ontdata.csv`
+* `mouse_raw.csv`
+* `pig_raw.csv`
+
+These files are the original datasets used in this study.
+Due to their large size, they have been uploaded to Hugging Face:
+
+https://huggingface.co/datasets/Gang1998c/Modcon_data
+
+This repository also includes:
+
+* Reference genome files
+* Corresponding `over.chain` files
+
+#### Trained Models
+
+The four trained base-specific models can be downloaded from:
+
+https://huggingface.co/Gang1998c/Modcon
+
+#### DNABERT-2
+
+For downloading and using the DNABERT-2 model, please refer to:
+
+* https://github.com/MAGICS-LAB/DNABERT_2
+* https://huggingface.co/zhihan1996/DNABERT-2-117M
+
 
 #📦 Data & Model Availability Download Guide:
 ·Essential Raw Datasets: The files ontdata.csv, mouse_raw.csv, and pig_raw.csv constitute the foundational raw data and are strictly required to run the model pipeline. Due to their large sizes, these files—along with the required reference genomes and over.chain files—have been hosted on Hugging Face. Users must download them manually from the Modcon Data Repository.
