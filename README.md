@@ -11,7 +11,7 @@
 
 ### Project framework
 
-![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
+![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework_v7.jpg)
 This diagram shows the complete analysis workflow:
 - **Data Collection**: RNA modification data from multiple species (human, mouse, pig)
 - **Data Processing**: Base calling, ELIGOS modification detection, and site mapping
