@@ -5,9 +5,11 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 
-**ModCon** a unified framework for modelling the RNA modification conservation at single-base resolution. ModCon was built from Oxford Nanopore direct RNA sequencing (ONT) data in three mammals, using modified-base calls from ELIGOS that do not specify the exact modification chemistry. The framework integrates four complementary evidence components, including a fine-tuned DNA language model, to quantify a single-base conservation score for each human modified residue.
+## 📕Introduction
 
-### Pipeline Workflow
+**ModCon**, a unified framework for modelling the RNA modification conservation at single-base resolution. ModCon was built from Oxford Nanopore direct RNA sequencing (ONT) data in three mammals, using modified-base calls from ELIGOS that do not specify the exact modification chemistry. The framework integrates four complementary evidence components, including a fine-tuned DNA language model, to quantify a single-base conservation score for each human modified residue.
+
+### Project framework
 
 ![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
 This diagram shows the complete analysis workflow:
