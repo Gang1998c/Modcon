@@ -1,11 +1,21 @@
-# ModCon: An Integrated Multimodal Pipeline for RNA Modification Conservation Scoring
+# ModCon: A unified framework for quantifying epitranscriptomic conservation and prioritizing functional RNA modification sites
 
 [![Python](https://img.shields.io/badge/Python-3.8%252B-blue.svg)](https://www.python.org/)
 [![R](https://img.shields.io/badge/R-4.2.2%252B-seafoam.svg)](https://www.r-project.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 
-**ModCon** is a high-performance, cross-language software tool designed to assess and score RNA modification site conservation across species (human, mouse, and pig). By combining advanced sequence tokenization with multimodal deep learning architecture, this tool provides a comprehensive and interpretable solution for quantifying conservation features of RNA modifications across different species.
+**ModCon** a unified framework for modelling the RNA modification conservation at single-base resolution. ModCon was built from Oxford Nanopore direct RNA sequencing (ONT) data in three mammals, using modified-base calls from ELIGOS that do not specify the exact modification chemistry. The framework integrates four complementary evidence components, including a fine-tuned DNA language model, to quantify a single-base conservation score for each human modified residue.
+
+### Pipeline Workflow
+
+![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
+This diagram shows the complete analysis workflow:
+- **Data Collection**: RNA modification data from multiple species (human, mouse, pig)
+- **Data Processing**: Base calling, ELIGOS modification detection, and site mapping
+- **Model Construction**: Homologous modification consistency, intra-species reproducibility, sequence context conservation analysis
+- **Fine-tuned Large Language Model**: MLP classifier and DNABERT-2 Transformer integration
+- **Model Validation and Application**: NGS validation, variant density validation, functional analysis, and web service prediction
 
 ------------------------------------------------------------------------
 
@@ -27,17 +37,6 @@ This pipeline executes an automated 5-stage data processing workflow that seamle
 
 5.  **Ensemble Aggregation:**
     Aggregates cross-species tracking results, empirical database scores, and deep learning classification probabilities into a single holistic metric: **ModCon Score**.
-
-### Pipeline Workflow
-
-![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework.jpg)
-
-This diagram shows the complete analysis workflow:
-- **Data Collection**: RNA modification data from multiple species (human, mouse, pig)
-- **Data Processing**: Base calling, ELIGOS modification detection, and site mapping
-- **Model Construction**: Homologous modification consistency, intra-species reproducibility, sequence context conservation analysis
-- **Fine-tuned Large Language Model**: MLP classifier and DNABERT-2 Transformer integration
-- **Model Validation and Application**: NGS validation, variant density validation, functional analysis, and web service prediction
 
 ------------------------------------------------------------------------
 
