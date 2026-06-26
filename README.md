@@ -150,7 +150,7 @@ Due to their large size, they have been uploaded to Hugging Face:
 https://huggingface.co/datasets/Gang1998c/Modcon_data
 
 This repository also includes:
-
+* Four base-specific model training data
 * Reference genome files
 * Corresponding `over.chain` files
 
