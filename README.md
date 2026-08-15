@@ -102,8 +102,8 @@ BiocManager::install(c("GenomicRanges", "rtracklayer", "SummarizedExperiment",
                        "fitCons.UCSC.hg19", 
                        "phastCons100way.UCSC.hg19"))
 
-# 3. Install lab-specific multimodal feature extraction package
-devtools::install_github("m6ALogisticModel")
+# 3. Install multimodal feature extraction package
+devtools::install_github("ZhenWei10/m6ALogisticModel")
 ```
 
 ### 3. Clone Repository
