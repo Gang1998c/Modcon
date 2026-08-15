@@ -8,11 +8,11 @@
 
 ## 📕Introduction
 
-**ModCon** is a unified framework for quantifying **epitranscriptomic conservation** at **single-base resolution**. Unlike conventional conservation methods that measure **nucleotide sequence conservation**, ModCon evaluates **whether an RNA modification event itself is evolutionarily retained across species**.
+**ModCon** is a unified framework for quantifying **epitranscriptomic conservation** at **single-base resolution**. Unlike conventional conservation methods that measure **nucleotide sequence conservation**, ModCon evaluates evolutionary retention of **RNA modification events themselves**, offering a functional perspective on post-transcriptional regulation.
 
-Built from Oxford Nanopore direct RNA sequencing (ONT) datasets across **human, mouse, and pig**, ModCon integrates **four complementary evidence components** to generate a unified conservation score for every modified residue. These complementary signals include **orthologous modification concordance**, **within-species recurrence**, **local sequence-context conservation**, and a **fine-tuned DNABERT-2 language-model-derived conservation score**.
+Built from Oxford Nanopore direct RNA sequencing (ONT) datasets across **human, mouse, and pig**, ModCon integrates **four complementary evidence components** to generate a unified conservation score:
 
-The resulting **ModCon score (0–1)** provides a quantitative measure of evolutionary conservation at RNA modification sites, enabling researchers to prioritize conserved and potentially functional RNA modifications for downstream biological analyses.
+The resulting **ModCon score (0–1)** provides a quantitative measure of evolutionary conservation at RNA modification sites, enabling researchers to prioritize conserved and potentially functional epitranscriptomic loci.
 
 ### ✨ Key Features
 
@@ -28,24 +28,24 @@ The resulting **ModCon score (0–1)** provides a quantitative measure of evolut
 ModCon is a unified framework for quantifying **epitranscriptomic conservation** at single-base resolution. 
 
 ![ModCon Pipeline Architecture](https://github.com/Gang1998c/Modcon/raw/main/Modcon_Framework_v7.jpg)
-<sub><strong>Figure 1.</strong> Overview of the ModCon framework. Human ONT-derived modified residues are used as reference sites and evaluated across three biological levels. ModCon integrates four complementary evidence components into a unified site-level conservation score. Each component is normalized to a common 0–1 scale, and the final ModCon score is calculated as the equal-weight average of the four components.</sub>
+<sub><strong>Figure 1.</strong> Overview of the ModCon framework. Human ONT-derived modified residues are used as reference sites and evaluated across three biological levels. ModCon integrates four complementary evidence modules—orthologous concordance, recurrence, sequence-context conservation, and language model prediction—to produce a final conservation score.</sub>
 
 The complete workflow consists of five major stages:
 ### 1. Orthologous Modification Concordance
 
-Human ONT-derived modified sites are used as reference sites and mapped to orthologous genomic positions in mouse and pig using LiftOver. Orthologous modification concordance evaluates whether the corresponding positions in the two species also carry modification support, providing direct evidence for cross-species retention of RNA modification events.
+Human ONT-derived modified sites are used as reference sites and mapped to orthologous genomic positions in mouse and pig using LiftOver. Orthologous modification concordance evaluates whether the same modified base type is preserved at these positions.
 
 ### 2. Within-species Recurrence
 
-Within-species recurrence measures the number of independent samples in which each human modification site is detected. Sites recurring across multiple datasets are less likely to represent sample-specific technical artefacts and therefore provide a reproducible epitranscriptomic conservation signal.
+Within-species recurrence measures the number of independent samples in which each human modification site is detected. Sites recurring across multiple datasets are less likely to represent sample-specific noise.
 
 ### 3. Sequence-context Conservation
 
-ModCon evaluates conservation of the local sequence environment by comparing the **11-nt sequence window** centered on each human modified residue with the corresponding orthologous windows in mouse and pig, capturing conservation beyond the modified nucleotide itself.
+ModCon evaluates conservation of the local sequence environment by comparing the **11-nt sequence window** centered on each human modified residue with the corresponding orthologous windows in mouse and pig.
 
 ### 4. Fine-tuned large language model Signal
 
-A fine-tuned **DNABERT-2** language model combines nucleotide sequence representations with curated genomic features describing transcript region, structural context, and topological context to generate an additional conservation signal for each candidate modification site.
+A fine-tuned **DNABERT-2** language model combines nucleotide sequence representations with curated genomic features describing transcript region, structural context, and topological context to generate a learned conservation potential score.
 
 #### 5. ModCon Score Integration
 
@@ -64,6 +64,11 @@ Higher ModCon scores indicate stronger inferred evolutionary retention of the RN
 ------------------------------------------------------------------------
 
 ## 🛠️ Prerequisites & Installation
+
+### Platform
+- Platform: Linux x86_64
+- GPU: Nvidia GPUs
+- CPUs
 
 ### 1. Python Environment Setup
 
