@@ -87,7 +87,7 @@ pip install -r requirements.txt
 
 ### 2. R Environment Setup
 
-Execute the following commands in R to install required packages:
+Execute the following commands in R (version > 4.2.2) to install required packages:
 
 ```r
 # 1. Install standard CRAN dependency packages
@@ -105,6 +105,11 @@ BiocManager::install(c("GenomicRanges", "rtracklayer", "SummarizedExperiment",
 # 3. Install multimodal feature extraction package
 devtools::install_github("ZhenWei10/m6ALogisticModel")
 ```
+#### Suggested Package Versions：
+
+| CRAN packages | Bioconductor packages |
+|---|---|
+| `dplyr`: 1.1.4<br>`caret`: 6.0-94<br>`e1071`: 1.7-14<br>`ROCR`: 1.0-11<br>`pROC`: 1.18.5<br>`devtools`: 2.4.5<br>`BiocManager`: 1.30.25 | `GenomicRanges`: 1.50.2<br>`rtracklayer`: 1.58.0<br>`SummarizedExperiment`: 1.28.0<br>`TxDb.Hsapiens.UCSC.hg19.knownGene`: 3.2.2<br>`BSgenome.Hsapiens.UCSC.hg19`: 1.4.3<br>`BSgenome.Hsapiens.UCSC.hg38`: 1.4.5<br>`fitCons.UCSC.hg19`: 1.8.0<br>`phastCons100way.UCSC.hg19`: 3.7.1 |
 
 ### 3. Clone Repository
 
