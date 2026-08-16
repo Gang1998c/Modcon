@@ -121,9 +121,8 @@ cd Modcon
 ------------------------------------------------------------------------
 
 ## 📖 Quick Start
-
-### Basic Usage
-
+To generate ModCon scores for user-provided RNA modification sites, run:
+### Inference Usage
 ```bash
 python master_pipeline.py \
     --user_df_path "server_example_data.csv" \
