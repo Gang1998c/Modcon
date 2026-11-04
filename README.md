@@ -181,53 +181,43 @@ For downloading and using the DNABERT-2 model, please refer to:
 
 ```
 required arguments:
-  --user_df_path USER_DF_PATH, --input USER_DF_PATH
-                        Input hg38 modification sites (CSV/TSV).
+  --user_df_path        Input hg38 modification sites (CSV/TSV).
                         Columns: seqnames,position,strand (1-based)
 
-  --ontdata_path ONTDATA_PATH, --ontdata ONTDATA_PATH
-                        Human reference library containing noes/pm scores.
+  --ontdata_path        Human reference library containing noes/pm scores.
 
-  --hg38_fa HG38_FA, --hg38 HG38_FA
-                        Human hg38 reference FASTA
+  --hg38_fa             Human hg38 reference FASTA
 
-  --mm39_fa MM39_FA, --mm39 MM39_FA
-                        Mouse mm39 reference FASTA
+  --mm39_fa             Mouse mm39 reference FASTA
 
-  --sus11_fa SUS11_FA, --pig-fasta SUS11_FA
-                        Pig susScr11 reference FASTA
+  --sus11_fa            Pig susScr11 reference FASTA
 
-  --mm39_chain MM39_CHAIN, --mm39-chain MM39_CHAIN
-                        hg38-to-mm39 liftOver chain file
+  --mm39_chain          hg38-to-mm39 liftOver chain file
 
-  --sus11_chain SUS11_CHAIN, --pig-chain SUS11_CHAIN
-                        hg38-to-susScr11 liftOver chain file
+  --sus11_chain         hg38-to-susScr11 liftOver chain file
 
-  --output_path OUTPUT_PATH, --output OUTPUT_PATH
-                        Four-column output: seqnames,position,strand,modcon score.
+  --output_path         Four-column output: seqnames,position,strand,modcon score.
                         Use a .csv or .tsv suffix; parent folders are created.
                         (default: master_pipeline_output.csv)
 
-  --mouse_raw_path MOUSE_RAW_PATH, --mouse MOUSE_RAW_PATH
+  --mouse_raw_path      MOUSE_RAW_PATH
                         (default: mouse_raw.csv)
 
-  --pig_raw_path PIG_RAW_PATH, --pig PIG_RAW_PATH
+  --pig_raw_path        PIG_RAW_PATH
                         (default: pig_raw.csv)
 
-  --hg19_chain HG19_CHAIN, --hg19-chain HG19_CHAIN
+  --hg19_chain          HG19_CHAIN
                         (default: chain/hg38ToHg19.over.chain)
 
-  --dnabert_model_path DNABERT_MODEL_PATH, --dnabert DNABERT_MODEL_PATH
+  --dnabert_model_path  DNABERT_MODEL_PATH
                         DNABERT2 config, tokenizer and native source directory.
                         (default: models/DNABERT-2-117M)
 
-  --base_model_dir BASE_MODEL_DIR, --models BASE_MODEL_DIR
+  --base_model_dir      BASE_MODEL_DIR
                         Parent directory containing model_A/C/G/U, each with
                         best_model.pth. DNA T uses model_U; model_T is a fallback.(default: models)
 
-  --r_script_path R_SCRIPT_PATH
-                        Companion six-feature R annotation script, invoked with
-                        Rscript from the current PATH.
+  --r_script_path       R_SCRIPT_PATH
                         (default: server_R.R beside master_pipeline.py)
 
 optional arguments:
