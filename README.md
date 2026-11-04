@@ -123,23 +123,51 @@ cd Modcon
 ## 📖 Quick Start
 To generate ModCon scores for user-provided RNA modification sites, run:
 ### Inference Usage
+
+The following command runs inference for user-provided modification sites. Update the paths to match your local dataset, reference files, and model directory.
+
 ```bash
+# Input and output files
+INPUT_SITES="data/input.csv"
+OUTPUT_SCORES="results/Modcon_scores.csv"
+DETAILED_OUTPUT="results/detailed.tsv"
+
+# Supporting datasets
+ONT_DATA="data/ontdata.csv"
+MOUSE_DATA="data/mouse_raw.csv"
+PIG_DATA="data/pig_raw.csv"
+
+# Reference genomes and LiftOver chain files
+HG38_FASTA="fasta/hg38.fa"
+MM39_FASTA="fasta/mm39.fa"
+SUS11_FASTA="fasta/susScr11.fa"
+MM39_CHAIN="chain/hg38ToMm39.over.chain"
+SUS11_CHAIN="chain/hg38ToSusScr11.over.chain"
+HG19_CHAIN="chain/hg38ToHg19.over.chain"
+
+# Trained models
+BASE_MODEL_DIR="models"
+DNABERT_MODEL="models/DNABERT-2-117M"
+
+# Run ModCon inference
 python master_pipeline.py \
-  --user_df_path data/input.csv \
-  --output_path results/Modcon_scores.csv \
-  --detailed-output results/detailed.tsv \
-  --ontdata_path data/ontdata.csv \
-  --mouse_raw_path data/mouse_raw.csv \
-  --pig_raw_path data/pig_raw.csv \
-  --hg38_fa fasta/hg38.fa \
-  --mm39_fa fasta/mm39.fa \
-  --sus11_fa fasta/susScr11.fa \
-  --mm39_chain chain/hg38ToMm39.over.chain \
-  --sus11_chain chain/hg38ToSusScr11.over.chain \
-  --hg19_chain chain/hg38ToHg19.over.chain \
-  --base_model_dir models \
-  --dnabert_model_path models/DNABERT-2-117M
+  --user_df_path "$INPUT_SITES" \
+  --output_path "$OUTPUT_SCORES" \
+  --detailed-output "$DETAILED_OUTPUT" \
+  --ontdata_path "$ONT_DATA" \
+  --mouse_raw_path "$MOUSE_DATA" \
+  --pig_raw_path "$PIG_DATA" \
+  --hg38_fa "$HG38_FASTA" \
+  --mm39_fa "$MM39_FASTA" \
+  --sus11_fa "$SUS11_FASTA" \
+  --mm39_chain "$MM39_CHAIN" \
+  --sus11_chain "$SUS11_CHAIN" \
+  --hg19_chain "$HG19_CHAIN" \
+  --base_model_dir "$BASE_MODEL_DIR" \
+  --dnabert_model_path "$DNABERT_MODEL"
 ```
+
+Only the paths above need to be customized; the argument names and command structure can remain unchanged.
 
 ### Data & Model Download
 
