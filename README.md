@@ -180,31 +180,105 @@ For downloading and using the DNABERT-2 model, please refer to:
 ### Parameter Illustration
 
 ```
+required arguments:
+  --user_df_path USER_DF_PATH, --input USER_DF_PATH
+                        Input hg38 modification sites (CSV/TSV).
+                        Columns: seqnames,position,strand (1-based), or
+                        contig,gen_position,strand (0-based). (default: None)
+
+  --ontdata_path ONTDATA_PATH, --ontdata ONTDATA_PATH
+                        Human reference library containing noes/pm scores.
+                        Required columns: seqnames,start,strand,rank_noes,
+                        pm_score; start must be hg38 1-based. (default: None)
+
+  --hg38_fa HG38_FA, --hg38 HG38_FA
+                        Human hg38 reference FASTA for single-base checks,
+                        800 bp model input and 11 nt comparison. (default: None)
+
+  --mm39_fa MM39_FA, --mm39 MM39_FA
+                        Mouse mm39 reference FASTA. (default: None)
+
+  --sus11_fa SUS11_FA, --pig-fasta SUS11_FA
+                        Pig susScr11 reference FASTA. (default: None)
+
+  --mm39_chain MM39_CHAIN, --mm39-chain MM39_CHAIN
+                        hg38-to-mm39 liftOver chain file. (default: None)
+
+  --sus11_chain SUS11_CHAIN, --pig-chain SUS11_CHAIN
+                        hg38-to-susScr11 liftOver chain file. (default: None)
+
 optional arguments:
-  -h, --help            show this help message and exit
-  --user_df_path USER_DF_PATH
-                        Path to user-uploaded modification sites file (CSV format) (default: None)
+  -h, --help            Show command-line help and exit without prediction.
+
+  --output_path OUTPUT_PATH, --output OUTPUT_PATH
+                        Four-column output: seqnames,position,strand,modcon score.
+                        Use a .csv or .tsv suffix; parent folders are created.
+                        (default: master_pipeline_output.csv)
+
+  --detailed-output DETAILED_OUTPUT
+                        Separate CSV/TSV retaining original input fields, scores,
+                        six feature names/values for the site's model, 800 bp
+                        sequence and mapping diagnostics. (default: not saved)
+
+  --work WORK           Directory for stage/model caches, logs and completion
+                        records. Repeat the same command to resume completed
+                        stages. (default: <output directory>/<output stem>_work)
+
   --r_script_path R_SCRIPT_PATH
-                        Path to companion R feature extraction engine script (default: server_R.R)
-  --ontdata_path ONTDATA_PATH
-                        Path to base reference library (ontdata.csv) (default: None)
-  --output_path OUTPUT_PATH
-                        Output file destination path (default: master_pipeline_output.csv)
-  --mouse_raw_path MOUSE_RAW_PATH
-                        Path to mouse known conserved coordinates catalog (default: mouse_raw.csv)
-  --pig_raw_path PIG_RAW_PATH
-                        Path to pig known conserved coordinates catalog (default: pig_raw.csv)
-  --hg38_fa HG38_FA     Path to Human hg38 reference genome FASTA (default: None)
-  --mm39_fa MM39_FA     Path to Mouse mm39 reference genome FASTA (default: None)
-  --sus11_fa SUS11_FA   Path to Pig susScr11 reference genome FASTA (default: None)
-  --mm39_chain MM39_CHAIN
-                        Path to hg38ToMm39 conversion over.chain file (default: None)
-  --sus11_chain SUS11_CHAIN
-                        Path to hg38ToSusScr11 conversion over.chain file (default: None)
-  --dnabert_model_path DNABERT_MODEL_PATH
-                        Path to local pre-trained DNABERT-2 workspace directory (default: ./embedded_model)
-  --base_model_dir BASE_MODEL_DIR
-                        Parent workspace directory containing model_A/C/G/U folders (default: ./)
+                        Companion six-feature R annotation script, invoked with
+                        Rscript from the current PATH.
+                        (default: server_R.R beside master_pipeline.py)
+
+  --mouse_raw_path MOUSE_RAW_PATH, --mouse MOUSE_RAW_PATH
+                        Mouse known-site catalog; requires site_pos_mm39.
+                        Site key: chr1:12345 + (mm39, 1-based).
+                        (default: mouse_raw.csv)
+
+  --pig_raw_path PIG_RAW_PATH, --pig PIG_RAW_PATH
+                        Pig known-site catalog; requires site_pos_sus11.
+                        Site key: chr1:12345 + (susScr11, 1-based).
+                        (default: pig_raw.csv)
+
+  --hg19_chain HG19_CHAIN, --hg19-chain HG19_CHAIN
+                        hg38-to-hg19 chain for R genomic feature annotation.
+                        Final output coordinates remain hg38.
+                        (default: chain/hg38ToHg19.over.chain)
+
+  --dnabert_model_path DNABERT_MODEL_PATH, --dnabert DNABERT_MODEL_PATH
+                        DNABERT2 config, tokenizer and native source directory.
+                        Original pretraining pytorch_model.bin is not required.
+                        (default: models/DNABERT-2-117M)
+
+  --base_model_dir BASE_MODEL_DIR, --models BASE_MODEL_DIR
+                        Parent directory containing model_A/C/G/U, each with
+                        best_model.pth. DNA T uses model_U; model_T is a fallback.
+                        Six-feature checkpoints are required. (default: models)
+
+  --assembly-report ASSEMBLY_REPORT
+                        Optional hg38 assembly report for RefSeq/GenBank/PATCH/
+                        alt sequence-name aliases. Does not convert coordinates
+                        or add sequences missing from FASTA. (default: None)
+
+  --batch-size BATCH_SIZE
+                        Sites per model forward pass; positive integer.
+                        Reduce if GPU memory is insufficient. Does not split
+                        the whole-dataset R annotation. (default: 16)
+
+  --precision {fp32,bf16}
+                        fp32: float32 prediction.
+                        bf16: mixed precision on a BF16-capable CUDA GPU only;
+                        unsupported devices raise an error. (default: fp32)
+
+  --device {auto,cpu,cuda}
+                        auto: CUDA if available, otherwise CPU.
+                        cpu: force CPU; requires fp32.
+                        cuda: force CUDA; raises an error if unavailable.
+                        (default: auto)
+
+  --invalid-sites {error,drop}
+                        error: stop on invalid hg38 sites or 800 bp windows.
+                        drop: remove those rows and continue.
+                        Both record dropped_sites.csv in WORK. (default: error)
 ```
 
 ------------------------------------------------------------------------
