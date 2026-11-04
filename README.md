@@ -125,19 +125,20 @@ To generate ModCon scores for user-provided RNA modification sites, run:
 ### Inference Usage
 ```bash
 python master_pipeline.py \
-    --user_df_path "server_example_data.csv" \
-    --ontdata_path "data/ontdata.csv" \
-    --r_script_path "server_R.R" \
-    --hg38_fa "fasta_and_chain/hg38.fa" \
-    --mm39_fa "mm39.fa" \
-    --sus11_fa "susScr11.fa" \
-    --mm39_chain "hg38ToMm39.over.chain" \
-    --sus11_chain "hg38ToSusScr11.over.chain" \
-    --mouse_raw_path "mouse_raw.csv" \
-    --pig_raw_path "pig_raw.csv" \
-    --dnabert_model_path "DNABERT-2-117M/" \
-    --base_model_dir "model/" \
-    --output_path "results.csv"
+  --user_df_path data/input.csv \
+  --output_path results/Modcon_scores.csv \
+  --detailed-output results/detailed.tsv \
+  --ontdata_path data/ontdata.csv \
+  --mouse_raw_path data/mouse_raw.csv \
+  --pig_raw_path data/pig_raw.csv \
+  --hg38_fa fasta/hg38.fa \
+  --mm39_fa fasta/mm39.fa \
+  --sus11_fa fasta/susScr11.fa \
+  --mm39_chain chain/hg38ToMm39.over.chain \
+  --sus11_chain chain/hg38ToSusScr11.over.chain \
+  --hg19_chain chain/hg38ToHg19.over.chain \
+  --base_model_dir models \
+  --dnabert_model_path models/DNABERT-2-117M
 ```
 
 ### Data & Model Download
