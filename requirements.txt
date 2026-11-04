@@ -1,7 +1,0 @@
-pandas==2.0.3
-numpy==1.24.4
-torch==2.4.1
-transformers==4.29.2
-biopython==1.83
-python-liftover==1.4.0
-scikit-learn==1.2.2
