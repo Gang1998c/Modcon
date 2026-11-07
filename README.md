@@ -1,8 +1,8 @@
 # ModCon: A unified framework for quantifying epitranscriptomic conservation and prioritizing functional RNA modification sites
 
-[![Python](https://img.shields.io/badge/Python-3.8%252B-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![R](https://img.shields.io/badge/R-4.2.2%252B-seafoam.svg)](https://www.r-project.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.4.2-ee4c2c.svg)](https://pytorch.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.7.2-ee4c2c.svg)](https://pytorch.org/)
 [![Transformers](https://img.shields.io/badge/Transformers-HuggingFace-yellow.svg)](https://huggingface.co/)
 ![ONT](https://img.shields.io/badge/Data-ONT%20RNA--seq-blueviolet)
 
