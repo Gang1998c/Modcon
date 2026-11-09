@@ -76,7 +76,7 @@ Ensure you activate an Anaconda environment running Python 3.8+:
 
 ```bash
 # Create new conda environment
-conda create -n modcon python=3.8 -y
+conda create -n modcon python=3.12 -y
 
 # Activate environment
 conda activate modcon
@@ -263,7 +263,7 @@ chrY,57211982,+
 ### Example Output
 
 ```
-seqnames	position	strand	modcon_score
+seqnames	position	strand	modcon score
 chr17	42775424	+	0.7047
 chr1	165743188	-	0.2386
 chr1	44776696	+	0.6802
