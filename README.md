@@ -161,7 +161,7 @@ https://huggingface.co/datasets/Gang1998c/Modcon_data
 
 This repository also includes:
 * Four base-specific model training data
-* Reference genome files
+* Reference genome files (.fai index is also needed)
 * Corresponding `over.chain` files
 
 #### Trained Models
